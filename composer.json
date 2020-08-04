@@ -1,0 +1,42 @@
+{
+  "name": "metisfw/stripe",
+  "type": "library",
+  "description": "Stripe integration for Nette Framework",
+  "keywords": ["nette", "stripe", "pay", "checkout", "payment"],
+  "homepage": "https://github.com/MetisFW",
+  "license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+  "authors": [
+    {
+      "name": "GrowJOB s.r.o",
+      "email": "dev@growjob.com"
+    },
+    {
+      "name": "Martin Jonáš",
+      "email": "martin.jonas@growjob.com"
+    }
+  ],
+  "support": {
+    "email": "dev@growjob.com",
+    "issues": "https://github.com/MetisFW/Stripe/issues"
+  },
+  "require": {
+    "php": ">=5.6.0",
+    "nette/di": "^2.3",
+    "nette/application": "^2.3",
+    "stripe/stripe-php": "^7.45.0"
+  },
+  "require-dev": {
+    "nette/bootstrap": "^2.3@dev",
+    "nette/robot-loader": "^2.3@dev",
+    "nette/tester": "^2.3.2@dev",
+    "mockery/mockery": "^0.9@dev"
+  },
+  "autoload": {
+    "psr-0": {
+      "MetisFW\\Stripe\\": "src/"
+    }
+  },
+  "archive": {
+    "exclude": ["tests", ".travis.yml"]
+  }
+}

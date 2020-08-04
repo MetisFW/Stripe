@@ -1,0 +1,9 @@
+<div n:attr="(expand)$attrs">
+  <input id="card-name" type="text">
+  <div id="card-element"></div>
+  <button id="card-button" data-secret="{$clientSecret}">{$text}</button>
+</div>
+<script>
+  var stripe = Stripe({$publicApiKey});
+  var elements = stripe.elements();
+</script>
