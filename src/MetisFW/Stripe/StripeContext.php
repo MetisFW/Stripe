@@ -2,11 +2,15 @@
 
 namespace MetisFW\Stripe;
 
+use Nette\SmartObject;
 use Stripe\Exception\ApiErrorException;
 use Stripe\PaymentIntent;
 use Stripe\Stripe;
 
-class StripeContext extends \Nette\Object {
+
+class StripeContext {
+
+  use SmartObject;
 
   /** @var string */
   private $publicApiKey;

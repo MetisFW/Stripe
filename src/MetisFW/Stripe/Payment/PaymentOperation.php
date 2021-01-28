@@ -19,7 +19,7 @@ interface PaymentOperation {
   /**
    * @param string $paymentIntentId
    *
-   * @return void
+   * @return PaymentIntent
    */
   public function handleSuccess($paymentIntentId);
 

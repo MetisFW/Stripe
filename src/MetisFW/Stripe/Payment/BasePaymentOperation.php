@@ -2,14 +2,15 @@
 
 namespace MetisFW\Stripe\Payment;
 
-use MetisFW\Stripe\Helpers\GaTracking;
 use MetisFW\Stripe\StripeContext;
 use MetisFW\Stripe\StripeException;
-use Nette\InvalidArgumentException;
+use Nette\SmartObject;
 use Stripe\PaymentIntent;
 use Tracy\Debugger;
 
-abstract class BasePaymentOperation extends \Nette\Object implements PaymentOperation {
+abstract class BasePaymentOperation implements PaymentOperation {
+
+  use SmartObject;
 
   /** @var StripeContext */
   protected $context;

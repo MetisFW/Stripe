@@ -6,7 +6,6 @@ use MetisFW\Stripe\Payment\PaymentOperation;
 use MetisFW\Stripe\StripeException;
 use Nette\Application\UI\Control;
 use Nette\Utils\Random;
-use Nette\Utils\Strings;
 
 class PaymentControl extends Control {
 
