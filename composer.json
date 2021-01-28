@@ -21,8 +21,8 @@
   },
   "require": {
     "php": ">=5.6.0",
-    "nette/di": "^2.3",
-    "nette/application": "^2.3",
+    "nette/di": "2.3.*",
+    "nette/application": "2.3.*",
     "stripe/stripe-php": "^7.45.0"
   },
   "require-dev": {
