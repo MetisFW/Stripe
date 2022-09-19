@@ -56,7 +56,7 @@ abstract class BasePaymentOperation implements PaymentOperation {
     try {
       $payment = $this->context->retrievePaymentIntent($paymentIntentId);
       if($payment->status != PaymentIntent::STATUS_SUCCEEDED) {
-        throw new StripeException("Unexpected PaymentIntent status " + $payment->status + " for $paymentIntentId");
+        throw new StripeException("Unexpected PaymentIntent status " . $payment->status . " for $paymentIntentId");
       }
       $this->onSuccess($this, $payment);
       return $payment;

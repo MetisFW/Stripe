@@ -5,20 +5,21 @@ namespace MetisFW\Stripe\DI;
 use Nette\Configurator;
 use Nette\DI\Compiler;
 use Nette\DI\CompilerExtension;
+use Nette\Schema\Expect;
+use Nette\Schema\Schema;
 use Nette\Utils\Validators;
 
 class StripeExtension extends CompilerExtension {
 
-  /**
-   * @var array
-   */
-  public $defaults = array(
-    "paymentIntent" => array()
-  );
+  public function getConfigSchema(): Schema {
+    return Expect::structure([
+      'paymentIntent' => Expect::array()->default([]),
+    ]);
+  }
 
   public function loadConfiguration() {
     $builder = $this->getContainerBuilder();
-    $config = $this->getConfig($this->defaults);
+    $config = $this->getConfig();
 
     Validators::assertField($config, 'publicApiKey', 'string');
     Validators::assertField($config, 'secretApiKey', 'string');

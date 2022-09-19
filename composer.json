@@ -20,17 +20,19 @@
     "issues": "https://github.com/MetisFW/Stripe/issues"
   },
   "require": {
-    "php": ">=7.0",
-    "nette/di": "^2.4",
-    "nette/application": "^2.4",
+    "php": ">=7.4",
+    "nette/di": "^3.0",
+    "nette/application": "^3.0",
     "stripe/stripe-php": "^7.45.0",
-    "tracy/tracy": "^2.3"
+    "tracy/tracy": "*"
   },
   "require-dev": {
-    "nette/bootstrap": "^2.4@dev",
-    "nette/robot-loader": "^2.4@dev",
-    "nette/tester": "^2.3.2@dev",
-    "mockery/mockery": "^1.3@dev"
+    "nette/bootstrap": "^3.0@dev",
+    "nette/robot-loader": "^3.0@dev",
+    "nette/tester": "^2.4@dev",
+    "mockery/mockery": "^1.5@dev",
+    "phpstan/phpstan": "*",
+    "phpstan/phpstan-nette": "*"
   },
   "autoload": {
     "psr-0": {
@@ -38,6 +40,6 @@
     }
   },
   "archive": {
-    "exclude": ["tests", ".travis.yml"]
+    "exclude": ["tests"]
   }
 }
