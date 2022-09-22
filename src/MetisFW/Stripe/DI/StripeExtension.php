@@ -13,7 +13,9 @@ class StripeExtension extends CompilerExtension {
 
   public function getConfigSchema(): Schema {
     return Expect::structure([
-      'paymentIntent' => Expect::array()->default([]),
+      'publicApiKey' => Expect::string(),
+      'secretApiKey' => Expect::string(),
+      'paymentIntent' => Expect::array()->default([])
     ]);
   }
 
@@ -26,7 +28,7 @@ class StripeExtension extends CompilerExtension {
     Validators::assertField($config, 'paymentIntent', 'array');
 
     $builder->addDefinition($this->prefix('Stripe'))
-      ->setClass('MetisFW\Stripe\StripeContext',  array($config['publicApiKey'], $config['secretApiKey']))
+      ->setFactory('MetisFW\Stripe\StripeContext',  array($config['publicApiKey'], $config['secretApiKey']))
       ->addSetup('setPaymentIntentDefaults', array($config['paymentIntent']));
 
   }
