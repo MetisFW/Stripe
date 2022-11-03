@@ -7,7 +7,6 @@ use Nette\DI\Compiler;
 use Nette\DI\CompilerExtension;
 use Nette\Schema\Expect;
 use Nette\Schema\Schema;
-use Nette\Utils\Validators;
 
 class StripeExtension extends CompilerExtension {
 
@@ -23,13 +22,9 @@ class StripeExtension extends CompilerExtension {
     $builder = $this->getContainerBuilder();
     $config = $this->getConfig();
 
-    Validators::assertField($config, 'publicApiKey', 'string');
-    Validators::assertField($config, 'secretApiKey', 'string');
-    Validators::assertField($config, 'paymentIntent', 'array');
-
     $builder->addDefinition($this->prefix('Stripe'))
-      ->setFactory('MetisFW\Stripe\StripeContext',  array($config['publicApiKey'], $config['secretApiKey']))
-      ->addSetup('setPaymentIntentDefaults', array($config['paymentIntent']));
+      ->setFactory('MetisFW\Stripe\StripeContext',  array($config->publicApiKey, $config->secretApiKey))
+      ->addSetup('setPaymentIntentDefaults', array($config->paymentIntent));
 
   }
 
