@@ -63,8 +63,12 @@ class PaymentControl extends Control {
    */
   public function render($attrs = array(), $text = "Submit payment") {
     $template = $this->template;
-    $templateFilePath = $this->getTemplateFilePath();
-    $template->setFile($templateFilePath);
+    if($this->templateFilePath) {
+      /** @phpstan-latte-ignore */
+      $template->setFile($this->templateFilePath);
+    } else {
+      $template->setFile($this->getDefaultTemplateFilePath());
+    }
     try {
       $template->clientSecret = $this->operation->createPaymentIntent()->client_secret;
       $template->publicApiKey = $this->operation->getPublicApiKey();
