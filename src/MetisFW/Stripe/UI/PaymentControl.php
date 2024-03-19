@@ -44,7 +44,7 @@ class PaymentControl extends Control {
   }
 
   public function handleSuccess() {
-    $paymentIntentId = $this->getPresenter()->getParameter('paymentIntentId');
+    $paymentIntentId = $this->getPresenter()->getParameter('paymentIntentId') ?? $this->getPresenter()->getParameter('payment_intent');
 
     try {
       $paidPayment = $this->operation->handleSuccess($paymentIntentId);

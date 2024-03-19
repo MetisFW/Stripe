@@ -1,9 +1,40 @@
-<div n:attr="(expand)$attrs">
-  <input id="card-name" type="text">
-  <div id="card-element"></div>
-  <button id="card-button" data-secret="{$clientSecret}">{$text}</button>
-</div>
+<div id="stripe-payment-el-{$elementId}"></div>
+<button id="stripe-payment-button-{$elementId}" data-secret="{$clientSecret}">{$text}</button>
+
 <script>
+  var stripePaymentId = "stripe-payment-el-" + {$elementId};
+  var stripeButtonId = "stripe-payment-button-" + {$elementId};
+
+  var stripePaymentEl = document.getElementById(stripePaymentId);
+  var stripeButtonEl = document.getElementById(stripeButtonId);
+
   var stripe = Stripe({$publicApiKey});
-  var elements = stripe.elements();
+  var stripeElements = stripe.elements({ clientSecret: {$clientSecret} });
+
+  var stripePayment = stripeElements.create("payment");
+  stripePayment.mount("#"+stripePaymentId);
+
+  stripeButtonEl.addEventListener('click', function(ev) {
+    ev.preventDefault();
+    stripeElements.submit();
+    stripe.confirmPayment({
+      elements: stripeElements,
+      clientSecret: {$clientSecret},
+      confirmParams: {
+        return_url: {$successLink}
+      }
+    }).then(function(result) {
+      if (result.error) {
+        console.log("Stripe error:" + result.error.message);
+      } else {
+        console.log("Stripe result: Payment " + result.paymentIntent.status)
+        if (result.paymentIntent.status === 'succeeded') {
+          window.location.href = {$successLink} + "&paymentIntentId=" + result.paymentIntent.id;
+        } else {
+          console.log("payment error")
+        }
+      }
+    });
+  });
+
 </script>
